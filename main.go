@@ -1,0 +1,19 @@
+package main
+
+import (
+	"log"
+	"net/http"
+	"os"
+)
+
+func main() {
+	p := os.Getenv("PORT")
+
+	if p == "" {
+		p = "3000"
+	}
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/", fs)
+	log.Println("Listening on port: " + p)
+	http.ListenAndServe(":"+p, nil)
+}

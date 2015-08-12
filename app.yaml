@@ -1,0 +1,20 @@
+application: main
+
+version: 1-0
+
+runtime: go
+
+api_version: go1
+
+handlers:
+- url: /
+  static_files: index.html
+  upload: static/index.html
+
+- url: /(.*\.(css|gif|png|jpg|ico|js|html))
+  static_files: static/\1
+  upload: static/(.*\.(css|gif|png|jpg|ico|js|html))
+
+
+- url: /.*
+  script: _go_app
